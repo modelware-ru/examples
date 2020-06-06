@@ -9,7 +9,7 @@
 
         .container2 {
             display: grid;
-            grid-template-columns: auto 1fr 1fr;
+            grid-template-columns:1fr 1fr;
         }
 
         .container3 {
@@ -18,7 +18,7 @@
         }
 
         .hidden {
-            display: none;
+           display: none;
             background-color: burlywood;
         }
 
@@ -40,20 +40,17 @@
     <div class='container'>
         <div class="country">Country</div>
         <div class="container2">
-            <div class="hidden">+</div>
             <div class="region hidden">+ Region<br>text</div>
             <div class="city container3 hidden">
                 <div class="hidden">-</div>
                 <div class="city hidden"> City</div>
             </div>
-            <div>*</div>
-            <div class="region">Region 1<br>text</div>
+            <div class="region">* Region 1<br>text</div>
             <div class="city container3">
                 <div>+</div>
                 <div class="city">City 1</div>
             </div>
-            <div>|-</div>
-            <div class="region">Region 2<br>text</div>
+            <div class="region">|-Region 2<br>text</div>
             <div class="city container3">
                 <div class="hidden">+</div>
                 <div class="hidden">City 2</div>
@@ -64,8 +61,7 @@
                 <div>|-</div>
                 <div>City 23</div>
             </div>
-            <div>|-</div>
-            <div class="region">Region 2<br>text</div>
+            <div class="region">|-Region 2<br>text</div>
             <div class="city container3">
                 <div>+</div>
                 <div class="city">City 3<br>fffd<br>dsd</div>
