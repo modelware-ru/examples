@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "node maker.js"
+  },
+  "dependencies": {
+    "dnode": "^1.2.2",
+    "fs-extra": "^8.0.0",
+    "puppeteer": "^1.11.0"
+  }
+}

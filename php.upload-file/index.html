@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function uploadCallback(){
+        console.log("File is uploaded!");
+    }
+
+    function myclick() {
+        debugger
+        console.log(e);
+    }
+</script>
+
+<form action="upload.php" method="post" enctype="multipart/form-data" target="hiddentarget">
+    Select image to upload:
+    <label>
+        Custom Upload
+        <input type="file" name="fileToUpload">
+    </label>
+    <input type="hidden" name='value1' value="hidden-value1">
+    <input type="hidden" name='value2' value="hidden-value2">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
+<iframe name="hiddentarget" style="display:none;"></iframe>
+
+<button onclick="myclick()">RUN</button>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+[{
+    "isActive": true,
+    "url": {
+        "protocol": "http",
+        "host": "localhost:8080",
+        "domain": "/wizard-man-new"
+    },
+    "resolutions": [{
+            "width": 320,
+            "height": 600
+        },
+        {
+            "width": 414,
+            "height": 776
+        },
+        {
+            "width": 490,
+            "height": 315
+        },
+        {
+            "width": 600,
+            "height": 370
+        },
+        {
+            "width": 736,
+            "height": 414
+        },
+        {
+            "width": 640,
+            "height": 900
+        },
+        {
+            "width": 1200,
+            "height": 650
+        },
+        {
+            "width": 1440,
+            "height": 800
+        },
+        {
+            "width": 2000,
+            "height": 1100
+        }
+    ],
+    "scenario":[
+        {
+            "name": "openPopup",
+            "className": "testBtnShowPopup",
+            "event": "click"
+        },
+        {
+            "name": "nextSlide",
+            "className": "testBtnPopupNextSlide",
+            "event": "click"
+        },
+        {
+            "name": "prevSlide",
+            "className": "testBtnPopupPrevSlide",
+            "event": "click"
+        },
+        {
+            "name": "closePopup",
+            "className": "testBtnPopupClose",
+            "event": "click"
+        },
+        {
+            "name": "pressLike",
+            "className": "testBtnLike",
+            "event": "click"
+        },
+        {
+            "name": "pressMeet",
+            "className": "testBtnMeet",
+            "event": "click"
+        },
+        {
+            "name": "InputName",
+            "className": "testInputName",
+            "value": "name",
+            "event": "input"
+        },
+        {
+            "name": "goToNext",
+            "className": "testBtnNext",
+            "event": "click"
+        },
+        {
+            "name": "InputCity",
+            "className": "testInputCity",
+            "value": "st",
+            "event": "input"
+        },
+        {
+            "name": "EnterCity",
+            "className": "",
+            "value": "Enter",
+            "event": "pressKey"
+        },
+        {
+            "name": "goToNext",
+            "className": "testBtnNext",
+            "event": "click"
+        },
+        {
+            "name": "openPopupLogin",
+            "className": "testBtnPopupLoginOpen",
+            "event": "click"
+        },
+        {
+            "name": "openRecovery",
+            "className": "testBtnRecoveryPassword",
+            "event": "click"
+        },
+        {
+            "name": "InputRecovery",
+            "className": "testInputRecoveryMail",
+            "value": "some@mail.ru",
+            "event": "input"
+        },
+        {
+            "name": "DoRecovery",
+            "className": "testBtnDoRecovery",
+            "event": "click"
+        }
+    ]
+}]

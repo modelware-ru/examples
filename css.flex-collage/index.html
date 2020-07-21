@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item-min {
+            background-color: yellow;
+            width: min(100px, 200px);
+            height: 100px;
+        }
+        .item-max {
+            background-color: blue;
+            width: max(50px, 100px);
+            height: 100px;
+        }
+        .item-calc {
+            background-color: red;
+            width: calc(50px + 50px);
+            height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="item-min">MIN</div>
+<div class="item-max">MAX</div>
+<div class="item-calc">CALC</div>
+
+</body>
+</html>

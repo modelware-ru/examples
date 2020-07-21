@@ -1,0 +1,52 @@
+:global .hidden {
+    display: none;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.main:first-child {
+    margin-bottom: 1rem;
+}
+
+.location-search-input {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    outline: 0;
+    width: 350px;
+    height: 50px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 170%;
+}
+
+.autocomplete-dropdown-container {
+    width: 350px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 170%;
+    padding: 5px 15px;
+    height: 100px;
+    overflow: auto;
+    background: #FFFFFF;
+    border: 1px solid rgba(25, 30, 33, 0.5);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.suggestion-item {
+    background-color: lightblue;
+    height: 2rem;
+    padding: 1rem;
+}
+
+.suggestion-item--active {
+    background-color: lightgreen;
+    height: 2rem;
+}
+

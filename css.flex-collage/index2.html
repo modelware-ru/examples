@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        :root {
+            --collage-size: calc(100vh/2);
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            width: calc(var(--collage-size) * 2);
+            height: var(--collage-size);
+            margin: auto;
+        }
+
+        .row1 {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
+
+        .avatar {
+            background-color: aqua;
+            height: var(--collage-size);
+            width: var(--collage-size);
+        }
+
+        .item1,
+        .item2,
+        .item3,
+        .item4
+        {
+            width: calc(var(--collage-size) / 2);
+            height: calc(var(--collage-size) / 2);
+        }
+
+        .item1 {
+            background-color: red;
+        }
+        .item2 {
+            background-color: beige;
+        }
+        .item3 {
+            background-color: gray;
+        }
+        .item4 {
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="row1">
+        <div class="avatar"></div>
+        <div>
+            <div class="item1"></div>
+            <div class="item3"></div>
+        </div>
+        <div>
+            <div class="item2"></div>
+            <div class="item4"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+  {
+    "isActive": true,
+    "url": {
+      "protocol": "http",
+      "host": "localhost:9999",
+      "domain": "/"
+    },
+    "resolutions": [
+      {
+        "width": 320,
+        "height": 600
+      }
+    ],
+    "scenario": [
+    ]
+  }
+]

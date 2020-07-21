@@ -1,0 +1,23 @@
+[
+  {
+    "isActive": true,
+    "url": {
+      "protocol": "http",
+      "host": "localhost:8080",
+      "domain": "/wizard-man-new"
+    },
+    "resolutions": [
+      {
+        "width": 320,
+        "height": 600
+      }
+    ],
+    "scenario": [
+      {
+        "name": "pressLike",
+        "className": "testBtnLike",
+        "event": "click"
+      }
+    ]
+  }
+]

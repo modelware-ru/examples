@@ -1,0 +1,116 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.main:first-child {
+    margin-bottom: 1rem;
+}
+:global .Select {
+    position: relative;
+}
+
+:global .Select-control {
+    position: relative;
+    height: 46px;
+    border: 1px solid black;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius:  5px;
+}
+
+:global .Select--single > .Select-control .Select-value
+{
+    padding-top: 1px;
+}
+
+:global .Select-placeholder {
+    padding-left: 7px;
+    color: black;
+    padding-top: 3px;
+}
+
+:global .Select--single > .Select-control .Select-value {
+    color: black;
+    padding-left: 7px;
+    line-height: 32px;
+}
+
+:global .Select-arrow-zone {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    height: 100%;
+    text-align: center;
+}
+
+:global .Select-arrow {
+    display: inline-block;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    height: 10px;
+    width: 10px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+}
+
+:global .Select-menu-outer {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    /*max-height: initial !important;*/
+    border: 1px solid black;
+    padding: 0;
+    /*background-color: $color-bg;*/
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 50;
+    /*animation: show-menu .2s linear;*/
+    max-height: 100px !important;
+    height: 100px;
+}
+
+:global .Select-option {
+    padding: 5px 20px;
+    color: black;
+    /*line-height: 30px;*/
+}
+
+:global  .Select-option:not(:first-child) {
+    border-top: 1px solid black;
+}
+
+:global .Select-option:hover {
+    background-color: lightblue;
+}
+
+:global .Select-menu {
+    max-height: initial !important;
+}
+
+:global .Select-scrollbar-track {
+    top: 0;
+    bottom: 0;
+    right: 1px;
+    width: 3px !important;
+}
+
+:global .Select-scrollbar-thumb {
+    background-color: #787777;
+    border-radius: 900px;
+}
+    /*:global .main-newlp .Select-control {*/
+    /*    height: 46px !important;*/
+    /*}*/
+
+    /*:global .main-newlp .Select-placeholder {*/
+    /*    padding-top: 7px;*/
+    /*}*/
+
+    /*:global .main-newlp .Select--single > .Select-control .Select-value*/
+    /*{*/
+    /*    padding-top: 7px;*/
+    /*}*/
+
