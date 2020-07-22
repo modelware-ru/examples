@@ -5,6 +5,7 @@ namespace App\Type;
 use App\DB;
 use App\Types;
 use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\ResolveInfo;
 
 class QueryType extends ObjectType
 {
@@ -36,6 +37,24 @@ class QueryType extends ObjectType
                         'resolve' => function () {
                             return DB::select('SELECT * from authors');
                         }
+                    ],
+                    'combine' => [
+                        'type' => Types::combine(),
+                        'description' => 'Список авторов',
+                        'resolve' => function ($root, $args, $context, ResolveInfo $info) {
+                            $ret = [
+                                'a_id' => 1,
+                                'a_name' => 'name',
+                                'list' => [
+                                    [
+                                        'a_id' => 1,
+                                        'a_name' => 'name',
+                                    ],
+                                ]
+                            ];
+                            return $ret;
+                        }
+
                     ]
                 ];
             }

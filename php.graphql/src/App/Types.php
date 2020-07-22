@@ -5,6 +5,7 @@ namespace App;
 use App\Type\QueryType;
 use App\Type\MutationType;
 use App\Type\AuthorType;
+use App\Type\CombineType;
 use App\Type\InputAuthorType;
 use GraphQL\Type\Definition\Type;
 
@@ -15,6 +16,7 @@ class Types
 
     private static $author;
     private static $inputAuthor;
+    private static $combine;
 
     public static function query()
     {
@@ -29,6 +31,11 @@ class Types
     public static function author()
     {
         return self::$author ?: (self::$author = new AuthorType());
+    }
+
+    public static function combine()
+    {
+        return self::$combine ?: (self::$combine = new CombineType());
     }
 
     public static function inputAuthor()
