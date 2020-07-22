@@ -1,0 +1,7 @@
+.my {
+  background-color: red;
+  padding: 1rem;
+  &:hover {
+    background-color: orange;
+  }
+}

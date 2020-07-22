@@ -1,5 +1,9 @@
 import * as React from 'react';
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from 'react-dom';
 
-var mountNode = document.getElementById("app");
-ReactDOM.render(<h1>Hello</h1>, mountNode);
+import './asset/style/global.scss';
+
+import App from './App/App';
+
+const mountNode = document.getElementById('app');
+ReactDOM.render(<App/>, mountNode);
