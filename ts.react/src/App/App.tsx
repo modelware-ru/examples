@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import * as React from 'react';
 import Input from '../Control/Input/Input';
 
@@ -7,13 +8,14 @@ type InputState = {
     id: number,
     disabled: boolean,
     defaultValue: string,
+    instance?: any,
 }
 
 type AppState = {
     inputs: InputState[],
 }
 
-export default class App extends React.Component<any, AppState> {
+class App extends React.Component<any, AppState> {
 
     state: AppState = {
         inputs: [],
@@ -24,13 +26,22 @@ export default class App extends React.Component<any, AppState> {
     }
 
     myCallback = (me: any, id: number) => {
-        let i = me.getValue();
+        let index = this.state.inputs.findIndex( i => i.id === id);
+
+        if (index === -1) return;
+
+        let inputs: InputState[] = this.state.inputs;
+        inputs[index].instance = me;
+
+        this.setState({inputs});
     }
 
     onClick = (id: number) => {
         let index = this.state.inputs.findIndex( i => i.id === id);
 
         if (index === -1) return;
+
+        console.log(this.state.inputs[index].instance.getValue());
 
         let inputs: InputState[] = this.state.inputs;
         inputs[index].disabled = !inputs[index].disabled
@@ -73,3 +84,5 @@ export default class App extends React.Component<any, AppState> {
         );
     }
 }
+
+export default hot(App);

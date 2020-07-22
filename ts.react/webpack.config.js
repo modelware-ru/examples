@@ -7,7 +7,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
     mode: 'development',
-    entry: './src/index.tsx',
+    entry: [
+        'react-hot-loader/patch',
+        // 'webpack-dev-server/client?http://localhost:10000',
+        // 'webpack/hot/only-dev-server',
+        './src/index.tsx',
+    ],
+    devServer: {
+        hot: true,
+        contentBase: path.resolve(__dirname, 'dist'),
+        historyApiFallback: true,
+        port: 10000,
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -89,9 +100,6 @@ const config = {
         new webpack.HotModuleReplacementPlugin(),
     ],
     devtool: 'inline-source-map',
-    devServer: {
-        hot: true,
-    }
 };
 
 module.exports = config;
