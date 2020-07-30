@@ -1,6 +1,7 @@
 import { hot } from 'react-hot-loader/root';
 import * as React from 'react';
 import Input from '../Control/Input/Input';
+import Input2 from '../Control/Input2/Input2';
 
 let index = 0;
 
@@ -69,6 +70,13 @@ class App extends React.Component<any, AppState> {
                     return (
                         <div key={item.id}>
                             <Input
+                                value={item.defaultValue}
+                                disabled={item.disabled}
+                                me={
+                                    {callback: this.myCallback, id: item.id}
+                                }
+                            />
+                            <Input2
                                 value={item.defaultValue}
                                 disabled={item.disabled}
                                 me={
