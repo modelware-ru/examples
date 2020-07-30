@@ -16,15 +16,35 @@ class CombineType extends ObjectType
                 return [
                     'a_id' => [
                         'type' => Types::int(),
-                        'description' => 'Идентификатор пользователя'
+                        'description' => 'Идентификатор пользователя',
+                        'resolve' => function ($args) {
+                            return $args['a_id'] + 1;
+                        }
                     ],
                     'a_name' => [
                         'type' => Types::string(),
-                        'description' => 'Имя автора'
-                    ],
+                        'description' => 'Имя автора',
+                        'resolve' => function ($args) {
+                            return $args['a_name'];
+                        }],
                     'list' => [
                         'type' => Types::listOf(Types::author()),
-                        'description' => 'Имена других авторов'
+                        'description' => 'Имена других авторов',
+                        'resolve' => function ($args) {
+                            $args = [];
+                            return [
+                                0 =>
+                                    [
+                                        'a_id' => 1,
+                                        'a_name' => '1',
+                                    ],
+                                1 =>
+                                    [
+                                        'a_id' => 2,
+                                        'a_name' => '2',
+                                    ]
+                            ];
+                        }
                     ]
                 ];
             }

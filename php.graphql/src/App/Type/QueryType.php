@@ -32,10 +32,16 @@ class QueryType extends ObjectType
                         }
                     ],
                     'allAuthors' => [
-                        'type' => Types::listOf(Types::author()),
+//                        'type' => Types::listOf(Types::author()),
+                        'type' => Types::combine(),
                         'description' => 'Список авторов',
                         'resolve' => function () {
-                            return DB::select('SELECT * from authors');
+//                            return DB::select('SELECT * from authors');
+                            return [
+                                'a_id' => 1,
+                                'a_name' => 'a_name',
+                                'something' => 100,
+                            ];
                         }
                     ],
                     'combine' => [
