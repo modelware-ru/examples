@@ -1,138 +1,254 @@
-const JoiBase = require('joi');
+const util = require('util');
+const Joi = require('joi');
 
-const myJoi = JoiBase.extend((joi) => {
-    return {
-        type: 'myNewRule',
-        base: joi.string(),
-        coerce(value, helper) {
-            return {
-                value: '!' + value + '!',
+let schema;
+let res;
+
+schema = Joi.object(
+    {
+        username: Joi.string(),
+    }
+);
+
+res = schema.validate({username: 'ab'});
+// console.log(util.inspect(res, {showHidden: false, depth: null}));
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 1});
+// console.log(util.inspect(res, {showHidden: false, depth: null}));
+console.log(res);
+console.log('---------');
+
+res = schema.validate({});
+// console.log(util.inspect(res, {showHidden: false, depth: null}));
+console.log(res);
+console.log('---------');
+
+schema = Joi.object(
+    {
+        username: Joi.string().required(),
+    }
+);
+
+res = schema.validate({});
+// console.log(util.inspect(res, {showHidden: false, depth: null}));
+console.log(res);
+console.log('---------');
+
+schema = Joi.object({
+    username: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(30)
+        .required(),
+
+    password: Joi.string()
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+
+    repeat_password: Joi.ref('password'),
+
+    access_token: [
+        Joi.string(),
+        Joi.number()
+    ],
+
+    birth_year: Joi.number()
+        .integer()
+        .min(1900)
+        .max(2013),
+
+    email: Joi.string()
+        .email({minDomainSegments: 2, tlds: {allow: ['com', 'net']}})
+})
+    .with('username', 'birth_year')
+    .xor('password', 'access_token')
+    .with('password', 'repeat_password');
+
+
+res = schema.validate({username: 'abc', birth_year: 1994});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc'});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc1', birth_year: 1994, access_token: 123});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc1', birth_year: 1994, access_token: '123'});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc1', birth_year: 1994, access_token: true});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc1', birth_year: 2010.3, access_token: 'ok'});
+console.log(res);
+console.log('---------');
+
+res = schema.validate({username: 'abc1', birth_year: 2010, access_token: 'ok'});
+console.log(res);
+console.log('---------');
+
+
+schema = Joi.string().min(10);
+
+res = schema.validate(12);
+console.log(res);
+console.log('---------');
+
+res = schema.validate('12');
+console.log(res);
+console.log('---------');
+
+res = schema.validate('1234567890');
+console.log(res);
+console.log('---------');
+
+console.log(Joi.string().validate(undefined));
+console.log('---------');
+
+console.log(Joi.string().required().validate(undefined));
+console.log('---------');
+
+console.log(Joi.string().validate(undefined, /* options */ {presence: "required"}));
+console.log('---------');
+
+try {
+    console.log(Joi.assert('x', Joi.number()));
+} catch (e) {
+    console.log(e);
+}
+
+try {
+    console.log(Joi.assert(12, Joi.number()));
+} catch (e) {
+    console.log(e);
+}
+
+try {
+    console.log(Joi.assert('x', Joi.number(), 'PREFIX'));
+} catch (e) {
+    console.log(e);
+}
+
+try {
+    console.log(Joi.attempt('x', Joi.number()));
+} catch (e) {
+    console.log(e);
+}
+
+try {
+    console.log(Joi.attempt(22, Joi.number()));
+} catch (e) {
+    console.log(e);
+}
+
+
+const custom = Joi.defaults((schema) => {
+
+    switch (schema.type) {
+        case 'string':
+            return schema.required();
+        case 'object':
+            return schema.min(1);
+        default:
+            return schema;
+    }
+});
+
+console.log(custom.string().validate('undefined'));
+console.log(custom.string().validate(''));
+
+schema = Joi.object({
+    a: Joi.array().items(Joi.number()),
+    b: Joi.number().valid(Joi.in('a'))
+})
+
+console.log(schema.validate({
+    a: [
+        1, 2, 3, 4, 5
+    ],
+    b: 5
+}));
+
+console.log(schema.validate({
+    a: [
+        1, 2, 3, 4, 5
+    ],
+    b: 51
+}));
+
+let errs;
+
+errs = {
+    any: {
+        only: 'errrrrrrrrr',
+    }
+};
+
+schema = Joi.object(
+    {
+        x: {
+            a: Joi.any(),
+            b: {
+                c: Joi.any(),
+                d: Joi.ref('c')
             }
         },
-        rules: {
-            myRule:
-                {
-                    validate(params, value, state, options) {
-                        // return value;
-                    }
-                },
-
-        }
-    };
-});
-
-const schema1 = myJoi.object({
-    a: myJoi.string(),
-    b: myJoi.number(),
-    c: myJoi.myNewRule().myRule(),
-});
-
-const {error, value} = schema1.validate({a: 'a string', b: 12, c: 'my c string'});
-
-console.log('error =', error);
-console.log('value =', value);
-
-
-const custom = JoiBase.extend((joi) => {
-
-    return {
-        type: 'million',
-        base: joi.number(),
+        y: Joi.any()
+    })
+    .options({
         messages: {
-            'million.base': '{{#label}} must be at least a million',
-            'million.big': '{{#label}} must be at least five millions',
-            'million.round': '{{#label}} must be a round number',
-            'million.dividable': '{{#label}} must be dividable by {{#q}}'
+            'any.only': '!!!!!!!!!!!!!!!!!!!!!!',
         },
-        coerce(value, helpers) {
+    })
+    // .error((errors) => {
+    //     // return errs;
+    //     return new Error('custom error');
+    // });
 
-            // Only called when prefs.convert is true
-
-            if (helpers.schema.$_getRule('round')) {
-                return {value: Math.round(value)};
-            }
+console.log(schema.validate({
+    x: {
+        a: true,
+        b: {
+            c: 12,
+            d: 12,
         },
-        validate(value, helpers) {
+    },
+    y: "string",
+}));
 
-            // Base validation regardless of the rules applied
-
-            if (value < 1000000) {
-                return {value, errors: helpers.error('million.base')};
-            }
-
-            // Check flags for global state
-
-            if (helpers.schema.$_getFlag('big') &&
-                value < 5000000) {
-
-                return {value, errors: helpers.error('million.big')};
-            }
+console.log(schema.validate({
+    x: {
+        a: true,
+        b: {
+            c: 12,
+            d: 122,
         },
-        rules: {
-            big: {
-                alias: 'large',
-                method() {
+    },
+    y: "string",
+}));
 
-                    return this.$_setFlag('big', true);
-                }
-            },
-            round: {
-                convert: true,              // Dual rule: converts or validates
-                method() {
+console.log(util.inspect(schema.validate({
+    x: {
+        a: true,
+        b: {
+            c: 12,
+            d: 122,
+        },
+    },
+    y: "string",
+}), {showHidden: false, depth: null}));
 
-                    return this.$_addRule('round');
-                },
-                validate(value, helpers, args, options) {
 
-                    // Only called when prefs.convert is false (due to rule convert option)
-
-                    if (value % 1 !== 0) {
-                        return helpers.error('million.round');
-                    }
-                }
-            },
-            dividable: {
-                multi: true,                // Rule supports multiple invocations
-                method(q) {
-
-                    return this.$_addRule({name: 'dividable', args: {q}});
-                },
-                args: [
-                    {
-                        name: 'q',
-                        ref: true,
-                        assert: (value) => typeof value === 'number' && !isNaN(value),
-                        message: 'must be a number'
-                    }
-                ],
-                validate(value, helpers, args, options) {
-
-                    if (value % args.q === 0) {
-                        return value;       // Value is valid
-                    }
-
-                    return helpers.error('million.dividable', {q: args.q});
-                }
-            },
-            even: {
-                method() {
-
-                    // Rule with only method used to alias another rule
-
-                    return this.dividable(2);
-                }
-            }
-        }
-    };
-});
-
-const schema = custom.object({
-    a: custom.million().round().dividable(JoiBase.ref('b')),
-    b: custom.number(),
-    c: custom.million().even().dividable(7),
-    d: custom.million().round().prefs({convert: false}),
-    e: custom.million().large()
-});
-
+schema = Joi.number()
+    .ruleset.min(1).max(10).rule({ message: 'Number must be between 1 and 10' })
+;
+console.log(schema.validate(8));
 
 console.log('the end');

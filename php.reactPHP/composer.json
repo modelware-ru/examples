@@ -1,0 +1,6 @@
+{
+    "name": "modelware.ru/php.react-php",
+    "require": {
+        "react/event-loop": "^1.1"
+    }
+}
