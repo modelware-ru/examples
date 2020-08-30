@@ -1,0 +1,32 @@
+{
+    "en": {
+        "translation": {
+            "Welcome to React": "Welcome to React and react-i18next",
+            "key1": "{{text, uppercase}} just uppercased",
+            "key2": "{{text1}} is {{text2}}"
+        },
+        "anotherTranslation": {
+            "Welcome to React": "Welcome to React and react-i18next (another translation)"
+        }
+
+    },
+    "ru": {
+        "translation": {
+            "Welcome to React": "Добро пожаловать в React и react-i18next"
+        },
+        "anotherTranslation": {
+            "Welcome to React": "Добро пожаловать в React и react-i18next (another translation)"
+        }
+
+    },
+    "de": {
+        "translation": {
+            "Welcome to React": "Willkommen React und react-i18next"
+        },
+        "anotherTranslation": {
+            "Welcome to React": "Willkommen React und react-i18next (another translation)"
+        }
+
+    }
+
+}
