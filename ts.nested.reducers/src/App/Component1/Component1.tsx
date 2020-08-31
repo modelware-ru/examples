@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Component2 from "./Component2/Component2";
 import Component3 from "./Component3/Component3";
+import Component4 from "./Component4/Component4";
 import * as Component1Action from "./actions";
 
 class Component1 extends React.Component<any, any> {
@@ -27,6 +28,7 @@ class Component1 extends React.Component<any, any> {
                 <button onClick={this.props.action}>Component 1</button>
                 <Component2/>
                 <Component3 value={this.props.component3Value} onClick={this.onClick3}/>
+                <Component4/>
             </>
         );
     }
@@ -34,8 +36,8 @@ class Component1 extends React.Component<any, any> {
 
 const mapStateToProps = (store: any) => {
     return {
-        value: store.component1Reducer.value,
-        component3Value: store.component1Reducer.component3.value,
+        value: store.component1Reducer.component1Reducer.value,
+        component3Value: store.component1Reducer.component1Reducer.component3.value,
     }
 };
 
