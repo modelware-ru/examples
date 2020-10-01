@@ -10,6 +10,12 @@ import FieldLevelValidationPage from "./Example/FieldLevelValidationPage";
 import SubmitValidationPage from "./Example/SubmitValidationPage";
 import AsyncBlurValidationPage from "./Example/AsyncBlurValidationPage";
 import AsyncChangeValidationPage from "./Example/AsyncChangeValidationPage";
+import InitializeFromStatePage from "./Example/InitializeFromStatePage";
+import SelectingFormValuesPage from "./Example/SelectingFormValuesPage";
+import FieldArraysForm from "./Example/FieldArraysForm";
+import RemoteSubmitPage from "./Example/RemoteSubmitPage";
+import FieldNormalizingPage from "./Example/FieldNormalizingPage";
+import WizardPage from "./Example/WizardPage";
 
 class App extends React.Component<any, any> {
 
@@ -40,6 +46,18 @@ class App extends React.Component<any, any> {
                 {/*<AsyncBlurValidationPage/>*/}
                 <hr/>
                 <AsyncChangeValidationPage/>
+                <hr/>
+                <InitializeFromStatePage/>
+                <hr/>
+                <SelectingFormValuesPage/>
+                <hr/>
+                <FieldArraysForm/>
+                <hr/>
+                <RemoteSubmitPage/>
+                <hr/>
+                <FieldNormalizingPage/>
+                <hr/>
+                <WizardPage/>
             </>
         );
     }
