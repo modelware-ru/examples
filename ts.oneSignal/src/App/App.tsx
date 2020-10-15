@@ -13,6 +13,7 @@ class App extends React.Component<any, any> {
         externalUserId: '',
         removeExternalUserId: '',
         showSlidedownPrompt: '',
+        showCategorySlidedown: '',
         setSubscription: '',
         showNativePrompt: '',
         registerForPushNotifications: '',
@@ -183,6 +184,24 @@ class App extends React.Component<any, any> {
                 })
                 .catch((error: any) => {
                     this.setState({showSlidedownPrompt: 'error:' + error});
+                });
+        });
+    }
+
+    showCategorySlidedown = () => {
+        const {
+            OneSignal,
+        } = this.state;
+
+        // @ts-ignore
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.showCategorySlidedown()
+                .then((response: any) => {
+                    this.setState({showCategorySlidedown: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({showCategorySlidedown: 'error:' + error});
                 });
         });
     }
@@ -407,6 +426,11 @@ class App extends React.Component<any, any> {
                 <div>
                     <button onClick={this.showSlidedownPrompt}>showSlidedownPrompt</button>
                     <span>&nbsp;{this.state.showSlidedownPrompt}</span>
+                </div>
+                <hr/>
+                <div>
+                    <button onClick={this.showCategorySlidedown}>showCategorySlidedown</button>
+                    <span>&nbsp;{this.state.showCategorySlidedown}</span>
                 </div>
                 <hr/>
                 <div>
