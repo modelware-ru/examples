@@ -46,9 +46,18 @@ class App extends React.Component<any, any> {
         OneSignal.push(() => {
             OneSignal.init({
                 appId: settings.appId,
+                // promptOptions: {
+                //     slidedown: {
+                //         enabled: true,
+                //         autoPrompt: true,
+                //         timeDelay: 1,
+                //         pageViews: 1
+                //     },
             })
                 .then((response: any) => {
                     this.setState({init: 'ok'});
+
+                    OneSignal.log.setLevel('trace');
 
                     OneSignal.on('permissionPromptDisplay', () => {
                         this.promptCounter++;
@@ -79,10 +88,12 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
-            this.setState({isPushNotificationsEnabled: isEnabled ? 'on' : 'off'});
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.isPushNotificationsEnabled((isEnabled: boolean) => {
+                this.setState({isPushNotificationsEnabled: isEnabled ? 'on' : 'off'});
+            });
         });
-
     }
 
     setExternalUserId = (userId: string) => {
@@ -91,15 +102,17 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.setExternalUserId(userId)
-            .then((response: any) => {
-                this.setState({setExternalUserId: 'ok'});
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.setExternalUserId(userId)
+                .then((response: any) => {
+                    this.setState({setExternalUserId: 'ok'});
 
-            })
-            .catch((error: any) => {
-                this.setState({setExternalUserId: 'error:' + error});
-            });
-
+                })
+                .catch((error: any) => {
+                    this.setState({setExternalUserId: 'error:' + error});
+                });
+        });
     }
 
     getExternalUserId = () => {
@@ -108,14 +121,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.getExternalUserId()
-            .then((response: any) => {
-                this.setState({externalUserId: response});
-            })
-            .catch((error: any) => {
-                this.setState({externalUserId: 'error:' + error});
-            });
-
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.getExternalUserId()
+                .then((response: any) => {
+                    this.setState({externalUserId: response});
+                })
+                .catch((error: any) => {
+                    this.setState({externalUserId: 'error:' + error});
+                });
+        });
     }
 
     removeExternalUserId = () => {
@@ -124,13 +139,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.removeExternalUserId()
-            .then((response: any) => {
-                this.setState({removeExternalUserId: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({removeExternalUserId: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.removeExternalUserId()
+                .then((response: any) => {
+                    this.setState({removeExternalUserId: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({removeExternalUserId: 'error:' + error});
+                });
+        });
     }
 
     setSubscription = (flag: boolean) => {
@@ -139,13 +157,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.setSubscription(flag)
-            .then((response: any) => {
-                this.setState({setSubscription: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({setSubscription: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.setSubscription(flag)
+                .then((response: any) => {
+                    this.setState({setSubscription: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({setSubscription: 'error:' + error});
+                });
+        });
     }
 
     showSlidedownPrompt = () => {
@@ -154,13 +175,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.showSlidedownPrompt()
-            .then((response: any) => {
-                this.setState({showSlidedownPrompt: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({showSlidedownPrompt: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.showSlidedownPrompt()
+                .then((response: any) => {
+                    this.setState({showSlidedownPrompt: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({showSlidedownPrompt: 'error:' + error});
+                });
+        });
     }
 
     showNativePrompt = () => {
@@ -169,13 +193,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.showNativePrompt()
-            .then((response: any) => {
-                this.setState({showNativePrompt: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({showNativePrompt: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.showNativePrompt()
+                .then((response: any) => {
+                    this.setState({showNativePrompt: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({showNativePrompt: 'error:' + error});
+                });
+        });
     }
 
     registerForPushNotifications = () => {
@@ -184,13 +211,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.registerForPushNotifications()
-            .then((response: any) => {
-                this.setState({registerForPushNotifications: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({registerForPushNotifications: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.registerForPushNotifications()
+                .then((response: any) => {
+                    this.setState({registerForPushNotifications: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({registerForPushNotifications: 'error:' + error});
+                });
+        });
     }
 
     showHttpPrompt = () => {
@@ -199,13 +229,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.showHttpPrompt()
-            .then((response: any) => {
-                this.setState({showHttpPrompt: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({showHttpPrompt: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.showHttpPrompt()
+                .then((response: any) => {
+                    this.setState({showHttpPrompt: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({showHttpPrompt: 'error:' + error});
+                });
+        });
     }
 
     getNotificationPermission = () => {
@@ -214,9 +247,12 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.getNotificationPermission((permission) => {
-            this.setState({getNotificationPermission: permission});
-        })
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.getNotificationPermission((permission) => {
+                this.setState({getNotificationPermission: permission});
+            });
+        });
     }
 
     isPushNotificationsSupported = () => {
@@ -225,8 +261,11 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        let isPushSupported = OneSignal.isPushNotificationsSupported();
-        this.setState({isPushNotificationsSupported: isPushSupported ? 'true' : 'false'});
+        OneSignal.push(() => {
+            // @ts-ignore
+            let isPushSupported = OneSignal.isPushNotificationsSupported();
+            this.setState({isPushNotificationsSupported: isPushSupported ? 'true' : 'false'});
+        });
     }
 
     sendTag = () => {
@@ -235,13 +274,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.sendTag("key", "value")
-            .then((response: any) => {
-                this.setState({sendTag: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({sendTag: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.sendTag("key", "value")
+                .then((response: any) => {
+                    this.setState({sendTag: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({sendTag: 'error:' + error});
+                });
+        });
     }
 
     deleteTag = () => {
@@ -250,13 +292,16 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.deleteTag("key")
-            .then((response: any) => {
-                this.setState({deleteTag: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({deleteTag: 'error:' + error});
-            });
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.deleteTag("key")
+                .then((response: any) => {
+                    this.setState({deleteTag: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({deleteTag: 'error:' + error});
+                });
+        });
     }
 
     getTags = () => {
@@ -265,9 +310,12 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.getTags((tags) => {
-            this.setState({getTags: tags.key});
-        })
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.getTags((tags) => {
+                this.setState({getTags: tags.key});
+            });
+        });
     }
 
     sendSelfNotification = () => {
@@ -276,42 +324,45 @@ class App extends React.Component<any, any> {
         } = this.state;
 
         // @ts-ignore
-        OneSignal.sendSelfNotification(
-            /* Title (defaults if unset) */
-            "OneSignal Web Push Notification",
-            /* Message (defaults if unset) */
-            "Action buttons increase the ways your users can interact with your notification.",
-            /* URL (defaults if unset) */
-            'https://example.com/?_osp=do_not_open',
-            /* Icon */
-            'https://onesignal.com/images/notification_logo.png',
-            {
-                /* Additional data hash */
-                notificationType: 'news-feature'
-            },
-            [{ /* Buttons */
-                /* Choose any unique identifier for your button. The ID of the clicked button is passed to you so you can identify which button is clicked */
-                id: 'like-button',
-                /* The text the button should display. Supports emojis. */
-                text: 'Like',
-                /* A valid publicly reachable URL to an icon. Keep this small because it's downloaded on each notification display. */
-                icon: 'http://i.imgur.com/N8SN8ZS.png',
-                /* The URL to open when this action button is clicked. See the sections below for special URLs that prevent opening any window. */
-                url: 'https://example.com/?_osp=do_not_open'
-            },
+        OneSignal.push(() => {
+            // @ts-ignore
+            OneSignal.sendSelfNotification(
+                /* Title (defaults if unset) */
+                "OneSignal Web Push Notification",
+                /* Message (defaults if unset) */
+                "Action buttons increase the ways your users can interact with your notification.",
+                /* URL (defaults if unset) */
+                'https://example.com/?_osp=do_not_open',
+                /* Icon */
+                'https://onesignal.com/images/notification_logo.png',
                 {
-                    id: 'read-more-button',
-                    text: 'Read more',
-                    icon: 'http://i.imgur.com/MIxJp1L.png',
+                    /* Additional data hash */
+                    notificationType: 'news-feature'
+                },
+                [{ /* Buttons */
+                    /* Choose any unique identifier for your button. The ID of the clicked button is passed to you so you can identify which button is clicked */
+                    id: 'like-button',
+                    /* The text the button should display. Supports emojis. */
+                    text: 'Like',
+                    /* A valid publicly reachable URL to an icon. Keep this small because it's downloaded on each notification display. */
+                    icon: 'http://i.imgur.com/N8SN8ZS.png',
+                    /* The URL to open when this action button is clicked. See the sections below for special URLs that prevent opening any window. */
                     url: 'https://example.com/?_osp=do_not_open'
-                }]
-        )
-            .then((response: any) => {
-                this.setState({sendSelfNotification: 'ok'});
-            })
-            .catch((error: any) => {
-                this.setState({sendSelfNotification: 'error:' + error});
-            });
+                },
+                    {
+                        id: 'read-more-button',
+                        text: 'Read more',
+                        icon: 'http://i.imgur.com/MIxJp1L.png',
+                        url: 'https://example.com/?_osp=do_not_open'
+                    }]
+            )
+                .then((response: any) => {
+                    this.setState({sendSelfNotification: 'ok'});
+                })
+                .catch((error: any) => {
+                    this.setState({sendSelfNotification: 'error:' + error});
+                });
+        });
     }
 
     public render() {
