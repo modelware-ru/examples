@@ -47,6 +47,10 @@ class App extends React.Component<any, any> {
         OneSignal.push(() => {
             OneSignal.init({
                 appId: settings.appId,
+                // notifyButton: {
+                //     enable: true,
+                // },
+                // allowLocalhostAsSecureOrigin: true,
                 // promptOptions: {
                 //     slidedown: {
                 //         enabled: true,
