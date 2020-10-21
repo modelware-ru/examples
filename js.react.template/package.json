@@ -1,5 +1,5 @@
 {
-  "name": "js.editor.md",
+  "name": "js.react.template",
   "scripts": {
     "dev": "webpack --mode development --config webpack.config.js",
     "prod": "webpack --mode production --config webpack.config.js",
