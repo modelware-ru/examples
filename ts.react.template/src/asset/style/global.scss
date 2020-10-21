@@ -1,0 +1,6 @@
+body {
+  background-color: green;
+  &:hover {
+    background-color: red;
+  }
+}
