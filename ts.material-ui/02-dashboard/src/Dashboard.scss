@@ -1,0 +1,28 @@
+$drawer-width: 200px;
+
+.appBar {
+  z-index: 2000;
+}
+
+.appBarShift {
+  margin-left: $drawer-width;
+  width: calc(100% - #{$drawer-width});
+}
+
+.menuButton {
+  margin-right: 36px;
+}
+
+.menuButtonHidden {
+  display: none;
+}
+
+.drawerPaper {
+  position: relative;
+  white-space: nowrap;
+  width: $drawer-width;
+}
+
+.drawerPaperClose {
+  overflow-x: hidden;
+}
